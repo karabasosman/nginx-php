@@ -1,11 +1,10 @@
 #!/bin/bash
 set -e
 
-# Copy Nginx configuration
-cp /home/site/wwwroot/nginx.conf /etc/nginx/sites-available/default
-
 # Start PHP-FPM
 php-fpm -D
 
 # Start Nginx in foreground
-nginx -g "daemon off;"
+# We need to run Nginx with a wrapper script because
+# we're running as a non-root user
+exec nginx -g "daemon off;"
