@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Configure nginx
+COPY nginx-main.conf /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/sites-available/default
 
 # Create directory structure
@@ -15,7 +16,9 @@ RUN mkdir -p /home/site/wwwroot
 
 # Copy application files
 COPY index.php /home/site/wwwroot/
+COPY security-test.php /home/site/wwwroot/
 COPY nginx.conf /home/site/wwwroot/
+COPY nginx-main.conf /home/site/wwwroot/
 COPY startup.sh /home/site/wwwroot/
 COPY entrypoint.sh /entrypoint.sh
 
