@@ -1,7 +1,7 @@
 FROM php:8.4-fpm
 
 # Install dependencies
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     nginx \
     curl \
     && apt-get clean \
